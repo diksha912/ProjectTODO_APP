@@ -1,0 +1,81 @@
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <title> <%=locals.title%> </title>
+        <link rel="stylesheet" href="/css/home.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+        </head>
+    <body>
+        <div id="main">
+            <div id="todolist-heading">
+                <h1>TODO APP</h1>
+            </div>
+            <FORM action="/create-todo" method="POST">
+            <div id="discription-container">
+                <p>DISCRIPTION</p>
+                    <input type="text" id="form-id" name="description" placeholder="what do you need to do?" >
+            </div>
+            <div id="category-duedate-container">
+                <div id="category-container">
+                 <p>Category</p>
+                 <select id="select-id" name="category">
+                     <option>Work</option>
+                     <option>choose a category</option>
+                     <option>School</option>
+                     <option>Cleaning</option>
+                     <option>Personal</option>
+                 </select>
+    
+                </div>
+                <div id="due-date-container">
+                    <p>DUE DATE</p>
+                    
+                        <input type="date" id="date-id" name="date">
+                </div>
+            </div>
+            <div id ="buttons-task">
+                <div id="Add-task-button">
+                <button type="submit" id="add-button"><b><i class="fa fa-plus" aria-hidden="true"></i>
+                    &nbsp; <p>ADD TASKS</p></b></button>
+            </div>
+            <div id="delete-task-button">
+                <button type="submit"id="delete-button"form="delete1"><b><i class="fa fa-trash" aria-hidden="true"></i>
+                        &nbsp;<p>DELETE TASKS</p></b></button>
+                </div>
+            </div>
+        </form>
+            <div id="show">
+                <form id="delete1" action="/delete-todo/" method="GET" >
+                <%  for(let i of todo_list) { %>
+                    <div id="task">
+                        <div id="check">
+                        <input type="checkbox" id="check-box" name="task" value="<%=i._id %>">
+                        </div>   
+                        <div class="task-container">
+                            <span id="task-description">
+                               <b> <%=i.description %></b>
+                            </span>
+                            <br>
+                            <span id="task-date">
+                             <i class="far fa-calendar-alt" aria-hidden="true"></i>
+                            &nbsp;
+                            <%=i.date %>
+                            </span>
+                        </div>
+                        <div id="task-category">
+                                <%=i.category %>
+                        </div>
+                    
+                    </div>
+                    <%}%>
+                </form>      
+                <div>
+            
+        </div>
+    </body>
+</html>
